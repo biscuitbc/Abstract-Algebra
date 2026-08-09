@@ -1,0 +1,180 @@
+\chapter{子群与生成}
+
+\section{子群}
+
+\begin{definition}[子群]
+设 $G$ 是群。若非空子集 $H\subseteq G$ 满足
+\begin{enumerate}
+  \item 对任意 $a,b\in H$，有 $ab\in H$；
+  \item 对任意 $a\in H$，有 $a^{-1}\in H$，
+\end{enumerate}
+则称 $H$ 是 $G$ 的\emph{子群}，记作 $H\leq G$。
+\end{definition}
+
+结合律由 $G$ 中的运算自动继承。若 $a\in H$，则 $aa^{-1}=1\in H$，所以 $H$ 包含 $G$ 的单位元；每个 $a\in H$ 的逆元也属于 $H$。因此 $H$ 在限制后的运算下本身构成一个群。
+
+\begin{proposition}
+阿贝尔群的每个子群仍是阿贝尔群。
+\end{proposition}
+
+\begin{proof}
+交换律在 $G$ 的任意子集上仍然成立。
+\end{proof}
+
+\begin{theorem}[子群判别法]
+设 $H$ 是群 $G$ 的非空子集。若
+\[
+  ab^{-1}\in H,\qquad \forall a,b\in H,
+\]
+则 $H\leq G$。
+\end{theorem}
+
+\begin{proof}
+任取 $h\in H$，则 $hh^{-1}=1\in H$。于是对任意 $a\in H$，
+$1a^{-1}=a^{-1}\in H$。再对任意 $a,b\in H$，因 $b^{-1}\in H$，有
+\[
+  a(b^{-1})^{-1}=ab\in H.
+\]
+故 $H$ 对乘法与取逆封闭，是 $G$ 的子群。
+\end{proof}
+
+\begin{theorem}[子群的交]
+设 $\{H_i\}_{i\in I}$ 是 $G$ 的一族子群，则
+\[
+  \bigcap_{i\in I}H_i
+\]
+仍是 $G$ 的子群。
+\end{theorem}
+
+\begin{proof}
+每个 $H_i$ 都含有单位元，故交集非空。若 $a,b$ 属于该交集，则对所有 $i\in I$ 都有 $a,b\in H_i$，由子群判别法可知 $ab^{-1}\in H_i$。因此 $ab^{-1}$ 属于这一交集，结论成立。
+\end{proof}
+
+\section{中心化子与中心}
+
+\begin{definition}[元素的中心化子]
+对 $g\in G$，定义 $g$ 在 $G$ 中的\emph{中心化子}为
+\[
+  C_G(g)=\{a\in G\mid ag=ga\}.
+\]
+\end{definition}
+
+\begin{proposition}
+$C_G(g)$ 是 $G$ 的子群。
+\end{proposition}
+
+\begin{proof}
+显然 $1\in C_G(g)$。若 $a,b\in C_G(g)$，则
+\[
+  (ab)g=a(bg)=a(gb)=(ag)b=(ga)b=g(ab),
+\]
+故 $ab\in C_G(g)$。此外，由 $ag=ga$ 可得
+\[
+  g=a^{-1}ga,
+\]
+从而 $ga^{-1}=a^{-1}g$，所以 $a^{-1}\in C_G(g)$。
+\end{proof}
+
+\begin{definition}[子集的中心化子]
+对 $S\subseteq G$，定义
+\[
+  C_G(S)=\{a\in G\mid ag=ga,\ \forall g\in S\}.
+\]
+\end{definition}
+
+由于
+\[
+  C_G(S)=\bigcap_{g\in S}C_G(g),
+\]
+子集的中心化子也是 $G$ 的子群。特别地，
+\[
+  Z(G)=C_G(G)=\{a\in G\mid ag=ga,\ \forall g\in G\}
+\]
+称为 $G$ 的\emph{中心}。
+
+\section{生成子群与循环群}
+
+\begin{definition}[生成子群]
+设 $S\subseteq G$。所有包含 $S$ 的子群之交
+\[
+  \langle S\rangle
+  =\bigcap_{\substack{H\leq G\\S\subseteq H}}H
+\]
+称为由 $S$ \emph{生成的子群}。它是包含 $S$ 的最小子群，也称 $S$ 生成 $\langle S\rangle$。
+\end{definition}
+
+\begin{theorem}
+对任意 $S\subseteq G$，
+\[
+  \langle S\rangle
+  =\left\{
+    a_1^{\varepsilon_1}\cdots a_n^{\varepsilon_n}
+    \middle|
+    n\geq 0,\ a_i\in S,\ \varepsilon_i\in\{1,-1\}
+  \right\},
+\]
+其中 $n=0$ 时右侧表示空乘积 $1$。
+\end{theorem}
+
+\begin{proof}
+记右侧集合为 $K$。空乘积说明 $1\in K$；连接两个有限乘积仍得到同类乘积，而
+\[
+  \bigl(a_1^{\varepsilon_1}\cdots a_n^{\varepsilon_n}\bigr)^{-1}
+  =a_n^{-\varepsilon_n}\cdots a_1^{-\varepsilon_1}\in K.
+\]
+故 $K$ 是包含 $S$ 的子群。另一方面，任何包含 $S$ 的子群都对乘法与取逆封闭，因而都包含 $K$。由 $\langle S\rangle$ 的最小性可知 $K=\langle S\rangle$。
+\end{proof}
+
+若 $G$ 可由一个有限子集生成，则称 $G$ 为\emph{有限生成群}。若存在 $g\in G$ 使得
+\[
+  G=\langle g\rangle=\{g^n\mid n\in\mathbb Z\},
+\]
+则称 $G$ 为\emph{循环群}。
+
+\begin{proposition}
+每个循环群都是阿贝尔群。
+\end{proposition}
+
+\begin{proof}
+若 $G=\langle g\rangle$，则任意两个元素可写成 $g^m,g^n$。于是
+\[
+  g^m g^n=g^{m+n}=g^{n+m}=g^n g^m.
+\]
+\end{proof}
+
+\section{整数加法群的子群}
+
+本节把 $\mathbb Z$ 视为加法群。对 $d\in\mathbb Z$，记
+\[
+  d\mathbb Z=\{dk\mid k\in\mathbb Z\}.
+\]
+
+\begin{proposition}
+对任意 $d\in\mathbb Z$，$d\mathbb Z$ 都是 $\mathbb Z$ 的子群。
+\end{proposition}
+
+\begin{proof}
+$0=d\cdot 0\in d\mathbb Z$。若 $dm,dn\in d\mathbb Z$，则
+\[
+  dm-dn=d(m-n)\in d\mathbb Z.
+\]
+由加法形式的子群判别法，$d\mathbb Z\leq\mathbb Z$。
+\end{proof}
+
+\begin{theorem}
+$\mathbb Z$ 的每个子群都可唯一写成 $d\mathbb Z$，其中 $d$ 是某个非负整数。
+\end{theorem}
+
+\begin{proof}
+设 $H\leq\mathbb Z$。若 $H=\{0\}$，则 $H=0\mathbb Z$。
+
+以下设 $H\neq\{0\}$。若 $n\in H$ 且 $n<0$，则 $-n\in H$，因此 $H$ 含有正整数。令 $d$ 为 $H$ 中最小的正整数。因为 $H$ 是子群，$d$ 的所有整数倍都属于 $H$，故 $d\mathbb Z\subseteq H$。
+
+反过来，任取 $n\in H$。由带余除法，存在 $q,r\in\mathbb Z$ 使得
+\[
+  n=qd+r,\qquad 0\leq r<d.
+\]
+于是 $r=n-qd\in H$。由 $d$ 的最小性，只能有 $r=0$，故 $n\in d\mathbb Z$。因此 $H=d\mathbb Z$。
+
+最后，若 $d,e\geq 0$ 且 $d\mathbb Z=e\mathbb Z$，当这个群非零时，$d$ 与 $e$ 都是其中最小的正整数，故 $d=e$；零群的情形也给出 $d=e=0$。这就证明了唯一性。
+\end{proof}

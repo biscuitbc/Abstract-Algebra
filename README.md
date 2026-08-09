@@ -4,8 +4,10 @@
 
 ## 当前内容
 
-- 第一章：二元运算与群
-- 第二章：子群与生成
+- 第一章：群
+  - 群的定义与基本性质
+  - 子群
+  - 生成子群与循环群
 
 手写原稿见 [`week1.pdf`](week1.pdf)，编译后的电子讲义见 [`abstract-algebra-notes.pdf`](abstract-algebra-notes.pdf)。
 

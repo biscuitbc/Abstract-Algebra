@@ -1,6 +1,8 @@
-\chapter{二元运算与群}
+\chapter{群}
 
-\section{二元运算}
+\section{群的定义与基本性质}
+
+\subsection{二元运算}
 
 \begin{definition}[二元运算]
 设 $S$ 是一个集合。$S$ 上的一个\emph{二元运算}是映射
@@ -66,7 +68,7 @@ $[a_1,\dots,a_{n-1}]a_n$，故唯一性成立。
 则称该二元运算满足\emph{交换律}。使用乘法记号时，这一条件写作 $ab=ba$。
 \end{definition}
 
-\section{单位元与基本代数结构}
+\subsection{单位元与基本代数结构}
 
 \begin{definition}[单位元]
 若存在 $e\in S$，使得
@@ -91,7 +93,7 @@ $[a_1,\dots,a_{n-1}]a_n$，故唯一性成立。
 带有一个满足结合律的二元运算的集合称为\emph{半群}；有单位元的半群称为\emph{幺半群}。
 \end{definition}
 
-\section{群、逆元与幂}
+\subsection{群、逆元与幂}
 
 \begin{definition}[逆元]
 设 $S$ 是有单位元 $e$ 的半群。若对 $a\in S$，存在 $b\in S$ 使得
@@ -143,7 +145,7 @@ $[a_1,\dots,a_{n-1}]a_n$，故唯一性成立。
 对 $g\in G$，若存在 $n\geq 1$ 使得 $g^n=1$，则满足该等式的最小正整数称为 $g$ 的\emph{阶}，记作 $\ord(g)$；若不存在这样的 $n$，则称 $g$ 的阶为无穷。
 \end{definition}
 
-\section{群中的基本运算法则}
+\subsection{群中的基本运算法则}
 
 \begin{theorem}[消去律]
 设 $a,b,c\in G$。若 $ab=ac$，则 $b=c$；若 $ba=ca$，则同样有 $b=c$。
@@ -175,3 +177,5 @@ $[a_1,\dots,a_{n-1}]a_n$，故唯一性成立。
 \]
 由逆元的唯一性即得结论。
 \end{proof}
+
+\input{chapters/01-groups-subgroups}

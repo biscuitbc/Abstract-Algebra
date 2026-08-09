@@ -8,6 +8,8 @@
   - 群的定义与基本性质
   - 子群
   - 生成子群与循环群
+  - 对称群与置换群
+  - 陪集
 
 手写原稿见 [`week1.pdf`](week1.pdf)，编译后的电子讲义见 [`abstract-algebra-notes.pdf`](abstract-algebra-notes.pdf)。
 

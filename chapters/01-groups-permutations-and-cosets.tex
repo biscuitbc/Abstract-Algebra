@@ -1,0 +1,260 @@
+\section{对称群与置换群}
+
+\subsection{对称群}
+
+设 $T$ 是一个集合，记所有从 $T$ 到自身的映射组成的集合为
+\[
+  \operatorname{Map}(T,T)=\{f\mid f\colon T\to T\}.
+\]
+映射的复合给出一个二元运算
+\[
+  \operatorname{Map}(T,T)\times\operatorname{Map}(T,T)
+  \longrightarrow\operatorname{Map}(T,T),
+  \qquad (f,g)\longmapsto f\circ g.
+\]
+复合运算满足结合律，恒等映射 $\operatorname{id}_T$ 是单位元。但是，一般的映射未必可逆，
+所以 $\operatorname{Map}(T,T)$ 通常不是群。
+
+\begin{definition}[对称群]
+集合 $T$ 上所有双射组成的集合
+\[
+  \operatorname{Sym}(T)
+  =\{f\in\operatorname{Map}(T,T)\mid f\text{ 是双射}\}
+\]
+在映射复合下构成一个群，称为 $T$ 上的\emph{对称群}。
+\end{definition}
+
+当 $T=\{1,2,\dots,n\}$ 时，把 $\operatorname{Sym}(T)$ 记为 $S_n$，称为 $n$ 个文字的对称群。
+$S_n$ 的元素称为\emph{置换}，而 $S_n$ 的任意子群称为一个\emph{置换群}。
+
+一个置换 $\sigma\in S_n$ 可以写成双行形式
+\[
+  \sigma=
+  \begin{pmatrix}
+    1&2&\cdots&n\\
+    \sigma(1)&\sigma(2)&\cdots&\sigma(n)
+  \end{pmatrix}.
+\]
+因为 $\sigma(1),\dots,\sigma(n)$ 是 $1,\dots,n$ 的一个排列，所以
+\[
+  |S_n|=n!.
+\]
+
+\subsection{轮换与对换}
+
+\begin{definition}[轮换]
+设 $i_1,\dots,i_d$ 是 $\{1,\dots,n\}$ 中两两不同的元素。若 $\sigma\in S_n$ 满足
+\[
+  \sigma(i_1)=i_2,\quad \sigma(i_2)=i_3,\quad\dots,\quad
+  \sigma(i_{d-1})=i_d,\quad \sigma(i_d)=i_1,
+\]
+并固定其余所有元素，则称 $\sigma$ 为一个 $d$-\emph{轮换}，记作
+\[
+  (i_1,i_2,\dots,i_d).
+\]
+当 $d=2$ 时，轮换称为\emph{对换}。
+\end{definition}
+
+在轮换记号中，未出现的文字表示不动点。若两个轮换中出现的文字没有交集，则称它们\emph{不相交}。
+
+\begin{proposition}
+两个不相交的轮换可交换。
+\end{proposition}
+
+\begin{proof}
+两个轮换分别只改变各自所含的文字。对任意文字，先后施行这两个轮换与交换施行顺序所得的结果相同。
+\end{proof}
+
+\begin{proposition}[不相交轮换分解]
+每个置换都可以写成若干个两两不相交轮换的乘积；除去长度为 $1$ 的轮换并忽略各因子的次序后，这一分解唯一。
+\end{proposition}
+
+\begin{proof}
+对每个文字反复施行置换。由于集合有限，最终会回到起点，从而得到一个轮换。不同轨道要么相同，要么不相交；所有轨道给出所需分解。轨道由置换本身唯一确定，因此分解也具有所述唯一性。
+\end{proof}
+
+\begin{proposition}[对换分解]
+每个置换都可以写成若干个对换的乘积。
+\end{proposition}
+
+\begin{proof}
+只需对每个轮换使用恒等式
+\[
+  (i_1,i_2,\dots,i_d)
+  =(i_1,i_2)(i_2,i_3)\cdots(i_{d-1},i_d).
+\]
+再结合不相交轮换分解即可。
+\end{proof}
+
+\subsection{置换的奇偶性}
+
+\begin{definition}[逆序数与符号]
+对 $\sigma\in S_n$，集合
+\[
+  \{(i,j)\mid 1\leq i<j\leq n,\ \sigma(i)>\sigma(j)\}
+\]
+称为 $\sigma$ 的\emph{逆序集}，其元素个数称为 $\sigma$ 的\emph{逆序数}，记作
+$\operatorname{inv}(\sigma)$。定义 $\sigma$ 的符号为
+\[
+  \operatorname{sgn}(\sigma)=(-1)^{\operatorname{inv}(\sigma)}.
+\]
+若 $\operatorname{sgn}(\sigma)=1$，则称 $\sigma$ 为\emph{偶置换}；若符号为 $-1$，则称其为\emph{奇置换}。
+\end{definition}
+
+\begin{lemma}
+设 $\sigma\in S_n$，$\tau=(i,j)$ 是一个对换，则
+\[
+  \operatorname{sgn}(\sigma\tau)=-\operatorname{sgn}(\sigma).
+\]
+\end{lemma}
+
+\begin{proof}
+先设 $\tau=(k,k+1)$ 是相邻对换。右乘 $\tau$ 只交换单行表示中第 $k$ 与第 $k+1$ 个位置的值；
+这两个值之间的逆序状态发生改变，而它们与其他位置共同贡献的逆序数之和不变。因此总逆序数的奇偶性改变。
+
+一般地，当 $i<j$ 时，
+\[
+  (i,j)=(i,i+1)\cdots(j-2,j-1)(j-1,j)
+  (j-2,j-1)\cdots(i,i+1),
+\]
+右侧共有 $2(j-i)-1$ 个相邻对换，是奇数个。连续应用前一结论即得所需等式。
+\end{proof}
+
+\begin{corollary}
+一个置换为偶置换（奇置换）当且仅当它可以表示为偶数个（奇数个）对换的乘积。因此，对换分解中对换个数的奇偶性与分解方式无关。
+\end{corollary}
+
+\begin{corollary}
+对任意 $\sigma,\tau\in S_n$，有
+\[
+  \operatorname{sgn}(\sigma\tau)
+  =\operatorname{sgn}(\sigma)\operatorname{sgn}(\tau).
+\]
+\end{corollary}
+
+\begin{definition}[交错群]
+$S_n$ 中所有偶置换构成的子群
+\[
+  A_n=\{\sigma\in S_n\mid \operatorname{sgn}(\sigma)=1\}
+\]
+称为 $n$ 个文字的\emph{交错群}。
+\end{definition}
+
+\begin{corollary}
+当 $n>1$ 时，$S_n$ 中奇置换与偶置换各占一半，因而
+\[
+  |A_n|=\frac{n!}{2}.
+\]
+\end{corollary}
+
+\begin{proof}
+固定一个对换 $\rho$。映射 $\sigma\mapsto\sigma\rho$ 在偶置换与奇置换之间给出一个双射。
+\end{proof}
+
+\subsection{共轭公式}
+
+\begin{proposition}[$S_n$ 中的共轭公式]
+若 $\sigma$ 的不相交轮换分解为
+\[
+  \sigma=(i_1,\dots,i_{d_1})
+  (i_{d_1+1},\dots,i_{d_2})\cdots,
+\]
+则对任意 $\tau\in S_n$，
+\[
+  \tau\sigma\tau^{-1}
+  =\bigl(\tau(i_1),\dots,\tau(i_{d_1})\bigr)
+   \bigl(\tau(i_{d_1+1}),\dots,\tau(i_{d_2})\bigr)\cdots.
+\]
+\end{proposition}
+
+\begin{proof}
+共轭保持乘积，因此只需考虑 $\sigma=(i_1,\dots,i_d)$。对每个 $1\leq k<d$，
+\[
+  \tau(i_k)\xmapsto{\tau^{-1}}i_k
+  \xmapsto{\sigma}i_{k+1}
+  \xmapsto{\tau}\tau(i_{k+1}),
+\]
+而 $\tau(i_d)$ 被送到 $\tau(i_1)$；其他文字保持不动。故
+\[
+  \tau\sigma\tau^{-1}
+  =\bigl(\tau(i_1),\dots,\tau(i_d)\bigr).
+\]
+\end{proof}
+
+\subsection{几何体的对称群}
+
+\begin{definition}[几何体的对称群]
+设 $\Gamma$ 是欧氏空间中的一个几何体。所有保持 $\Gamma$ 的等距变换在复合下构成一个群，称为 $\Gamma$ 的\emph{对称群}。
+\end{definition}
+
+单位圆的线性对称群为
+\[
+  \mathrm{O}(2,\mathbb R)
+  =\{A\in\mathrm{GL}_2(\mathbb R)\mid A^{\mathsf T}A=I\},
+\]
+其中的变换包括旋转与轴反射。
+
+正 $n$ 边形的对称群记为 $D_n$，称为\emph{二面体群}。给顶点依次标号
+$1,2,\dots,n$ 后，每个几何对称都诱导一个顶点置换，因而可把 $D_n$ 视为 $S_n$ 的子群。
+一个对称将相邻顶点对 $\{1,2\}$ 送到某个相邻顶点对，而这两个顶点的像唯一决定整个对称；共有 $n$ 种相邻顶点对与两种次序，所以
+\[
+  |D_n|=2n.
+\]
+
+\section{陪集}
+
+\begin{definition}[左陪集与右陪集]
+设 $H\leq G$，$a\in G$。集合
+\[
+  aH=\{ah\mid h\in H\},
+  \qquad
+  Ha=\{ha\mid h\in H\}
+\]
+分别称为 $H$ 在 $G$ 中的一个\emph{左陪集}与\emph{右陪集}。
+\end{definition}
+
+\begin{example}
+在二面体群 $D_n$ 中，设 $\sigma$ 是旋转 $2\pi/n$ 的变换，$\tau$ 是一个反射，并令
+\[
+  H=\langle\sigma\rangle
+  =\{1,\sigma,\dots,\sigma^{n-1}\}.
+\]
+则 $H$ 是旋转组成的子群，$\tau\notin H$，且
+\[
+  \tau H=\{\tau,\tau\sigma,\dots,\tau\sigma^{n-1}\}.
+\]
+此外，$\tau H\cap H=\varnothing$，并且 $\tau H\cup H=D_n$。
+\end{example}
+
+\begin{proposition}
+设 $a,b\in G$。映射
+\[
+  f\colon aH\longrightarrow bH,
+  \qquad g\longmapsto ba^{-1}g
+\]
+是双射。因此，$H$ 的任意两个左陪集具有相同的基数。
+\end{proposition}
+
+\begin{proof}
+若 $g=ah\in aH$，则 $f(g)=bh\in bH$，所以映射良定义。定义
+\[
+  \varphi\colon bH\longrightarrow aH,
+  \qquad g\longmapsto ab^{-1}g.
+\]
+直接计算可得 $f\circ\varphi=\operatorname{id}_{bH}$ 且
+$\varphi\circ f=\operatorname{id}_{aH}$，故 $f$ 为双射。
+\end{proof}
+
+\begin{proposition}[左陪集相等的判别]
+对任意 $a,b\in G$，
+\[
+  aH=bH\quad\Longleftrightarrow\quad a^{-1}b\in H.
+\]
+\end{proposition}
+
+\begin{proof}
+若 $aH=bH$，则 $b\in aH$，故存在 $h\in H$ 使 $b=ah$，于是 $a^{-1}b=h\in H$。
+
+反过来，若 $a^{-1}b=h\in H$，则 $b=ah$，所以 $bH\subseteq aH$。又由
+$b^{-1}a=h^{-1}\in H$ 可得 $aH\subseteq bH$，故 $aH=bH$。
+\end{proof}
